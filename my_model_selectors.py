@@ -86,8 +86,8 @@ class SelectorBIC(ModelSelector):
             try:
                 hmm_model = self.base_model(n_components)
                 logL = hmm_model.score(self.X, self.lengths)
-                p = n_components**2 + 2*n_components*len((self.lengths)) - 1
-                logN = np.log(len((self.lengths.sum())))
+                p = n_components**2 + 2*n_components*len((self.X[0])) - 1
+                logN = np.log(len((self.X)))
                 bic = -2 * logL + p * logN
                 if bic < best_score:
                     best_score = bic
